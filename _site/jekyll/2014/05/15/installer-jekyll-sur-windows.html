@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title> Installer Jekyll Sur Windows  - Blog Firehall</title>
+		<!-- For responsive site
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="author" href="/humans.txt">
+		<meta name="description" content="Description Goes Here">
+		<link rel="stylesheet" href="/css/style.css">
+		<!--[if IE 7]>
+			<html class="ie7"> 
+			<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<!--[if IE 8]><html class="ie8"> <![endif]-->		
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">	    
+	</head>
+	<body>
+	<!-- Header
+	    ================================================== -->
+	<header>
+
+	</header>
+
+	<div class="top-strip"></div>
+<main class="content">
+    <section class="container">
+    	<div class="row-fluid">
+    		<article class="home-icon">
+				<a href="/">
+					<img src="/img/fh-icon.png" alt="blog firehall" width="60"/>
+					<!--<i class="icon-home"></i> -->
+				</a>
+			</article>
+			<article class="post">
+				<h5>
+                    
+                    15
+                    Mai
+                      
+                    2014
+                </h5>
+				<h2 class="content">Installer Jekyll Sur Windows</h2>
+				<section>
+					<p>Jekyll est un générateur de site statique (pas de base de données). Il se révèle particulièrement adapté aux développeurs qui souhaitent se créer un site rapidement et totalement maintenable dans un IDE, sans avoir à passer par une interface d’administration.</p>
+
+<h3 id="windows-et-lignes-de-commande">Windows et lignes de commande</h3>
+
+<p>Développé pour Linux/Unix et Mac OS, Jekyll n’est pas “officiellement” supporté sur Windows, on trouve pourtant de nombreuses pistes pour l’installer sur cet OS (à commencer par le <a href="http://jekyllrb.com/docs/windows/#installation">site officiel de Jekyll</a>).</p>
+
+<p>Pour une install en local, il est nécessaire d’installer Ruby et il est fortement conseillé d’en faire de même avec Python pour profiter de la coloration syntaxique.</p>
+
+<p>Ruby (et Python) proposent plusieurs versions Windows (32 et 64 bits). Pourtant, après plusieurs essais infructueux sur deux PC différents (et tous deux en Win7 64 bits) il apparait que les versions 32 bits sont plus stables (en tout cas plus faciles à faire fonctionner) : <a href="http://www.firehall.fr/jekyll/dnl/jekyll-sur-windows.zip">Voici un zip à télécharger, contenant les versions que j’ai installé</a> et pour lesquels je vais détailler la procédure d’installation.</p>
+
+<h3 id="installation-de-ruby">Installation de Ruby</h3>
+
+<ol>
+    <li><a href="http://www.firehall.fr/jekyll/dnl/jekyll-sur-windows.zip">Si ce n'est pas encore fait, télécharger et décompresser l'archive.</a></li>
+    <li>Double-cliquer sur <strong>"rubyinstaller-1.9.3-p545.exe"</strong> et l'installer dans c:\Ruby193 (cocher les 3 boites de dialogue).
+</li>
+<li>Créer le dossier : <strong>c:\Ruby193\devkit</strong></li>
+<li>Extraire <strong>"DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"</strong> dans le dossier créé précédement : <strong>c:\Ruby193\devkit</strong> (is s'agit du kit de développement Ruby)</li>
+<li>Ouvrir la console windows (démarrer &gt; Exécuter &gt; cmd) pour se rendre dans le dossier d'install du devkit :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">cd</span> <span class="s2">&quot;C:\Ruby193\devkit&quot;</span></code></pre></div>
+
+Initialisation et installation du kit :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">ruby</span> <span class="n">dk</span><span class="o">.</span><span class="n">rb</span> <span class="n">init</span></code></pre></div>
+
+
+<div class="highlight"><pre><code class="ruby"><span class="n">ruby</span> <span class="n">dk</span><span class="o">.</span><span class="n">rb</span> <span class="n">install</span></code></pre></div>
+
+</li>
+</ol>
+
+<p>Ruby et son kit de dev sont maintenant installés.</p>
+
+<h3 id="installation-de-jekyll">Installation de Jekyll</h3>
+
+<p>Il est <strong>important de passer par l’invit de commande Ruby</strong> <em>(Ce sera d’ailleurs le cas pour le reste de l’article)</em> :
+Démarrer &gt; (tous les programmes) &gt; Ruby 1.9.3 -545 &gt; <strong>“Start Command Prompt With Ruby”</strong> pour lancer l’installation de Jekyll :</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span></code></pre></div>
+
+<p><em>Le curseur clignote un peu, la procédure peut prendre un peu de temps.</em></p>
+
+<p>Si tout est ok, Jekyll est maintenant installé. On pourrait s’arrêter là, mais il est toutefois intéressant d’installer Python pour profiter de la coloration syntaxique.</p>
+
+<h3 id="installation-de-python">Installation de Python</h3>
+
+<ol>
+    <li>Installer <strong>python-2.7.6.exe</strong> en utilisant les paramètres par défaut.</li>
+    <li>En faire de même avec <strong>setuptools-3.5.1.win32-py2.7.exe</strong> (paramètres par défaut).</li>
+    <li>Et enfin avec : <strong>pip-1.5.5.win32-py2.7.exe</strong> (paramètres par défaut).</li>
+    <li>Ajouter les <strong>variables d'environnement</strong> :
+    touche windows + pause &gt; Paramètres systèmes avancés &gt; Variables d'environnement :
+    Modifier (ou créer) la variable Utilisateur PATH :
+    C:\Python27\Scripts;
+    Modifier (ou créer) la variable Systèmes PATH :
+    C:\Ruby193\bin;C:\Python27\;</li>
+<li>On installe alors la gem Pygments, qui va permettre la coloration syntaxique : 
+On ouvre l'invit de commande Ruby :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">pip</span> <span class="n">install</span> <span class="no">Pygments</span></code></pre></div>
+
+</li>
+<li>Il semble que toutes les versions de Pygments ne sont pas stables sur Windows, on va donc faire en sorte d'<strong>utiliser la version 0.5.0.</strong>
+On commence par vérifier la version qu'on vient d'installer : 
+
+<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="n">list</span></code></pre></div>
+
+On repère la ligne :
+
+<div class="highlight"><pre><code class="ruby"><span class="no">Pygments</span><span class="o">.</span><span class="n">rb</span></code></pre></div>
+
+S'il ne s'agit pas de la version 0.5.0, on va donc la désinstaller (dans mon cas : 0.5.4) :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="n">uninstall</span> <span class="n">pygments</span><span class="o">.</span><span class="n">rb</span> <span class="o">--</span><span class="n">version</span> <span class="s2">&quot;=0.5.4&quot;</span></code></pre></div>
+
+Puis on installe la version souhaitée :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="n">install</span> <span class="n">pygments</span><span class="o">.</span><span class="n">rb</span> <span class="o">--</span><span class="n">version</span> <span class="s2">&quot;=0.5.0&quot;</span></code></pre></div>
+
+</li>
+</ol>
+
+<p>Python est maintenant installé, on va pouvoir lancer Jekyll en local.</p>
+
+<h3 id="lancer-jekyll-dans-le-navigateur">Lancer Jekyll dans le navigateur</h3>
+<ol>
+<li>On créer un nouveau dossier de test : <strong>c:\test\</strong></li>
+<li>Toujours avec l'invit de commande Ruby, on se rend dans ce dossier :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">cd</span> <span class="ss">c</span><span class="p">:\</span><span class="nb">test</span></code></pre></div>
+
+On y installe la version de base de Jekyll :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">jekyll</span> <span class="kp">new</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">site</span></code></pre></div>
+
+Cette action va créer un nouveau dossier "jekyll-site" dans c:/test avec les fichiers et dossiers minimum pour utiliser Jekyll.
+</li>
+<li>
+On se rend dans le dossier "jekyll-site" :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">cd</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">site</span></code></pre></div>
+
+Et on lance le serveur :
+
+<div class="highlight"><pre><code class="ruby"><span class="n">jekyll</span> <span class="n">serve</span></code></pre></div>
+
+</li>
+<li>
+Il ne reste plus qu'à ouvrir un navigateur et se rendre à l'adresse : <strong>"http://localhost:4000"</strong> pour découvrir le site.
+</li>
+</ol>
+
+<h3 id="ressources-">Ressources :</h3>
+<p>Site officiel de Jekyll : <a href="http://jekyllrb.com">http://jekyllrb.com</a><br />
+Téléchargement de Ruby et de son kit de développement : <a href="http://rubyinstaller.org/downloads/">href=”http://rubyinstaller.org/downloads/</a><br />
+Téléchargement de Python : <a href="https://www.python.org/download/">https://www.python.org/download/</a><br />
+Téléchargement de SetupTools (Python) : <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools">http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools</a><br />
+Téléchargement de PIP (Python) : <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip">http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip</a><br /><br />
+<strong>Autres tutos sur l’installation de Jekyll sur Windows:</strong><br />
+<a href="https://github.com/juthilo/run-jekyll-on-windows/">https://github.com/juthilo/run-jekyll-on-windows/</a><br />
+<a href="https://www.youtube.com/watch?v=EtqZVTIro_c">https://www.youtube.com/watch?v=EtqZVTIro_c</a></p>
+
+
+					<hr>
+				</section>
+				<section style="font-weight:bold; margin-bottom: 2em;">
+					
+						
+				</section>
+			</article>
+		</div>
+	</section>
+</main>
+
+
+	<footer>
+		<div class="container">
+			<a href="http://richbray.me/frap/">Frappuccino</a> | Copyright or profile stuff goes here
+		</div>
+	</footer>
+
+	<!-- Footer
+	    ================================================== -->
+
+	<!-- Javascripts 
+	    ================================================= -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/custom.js"></script>
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+		// analytics code
+    </script>	
+	</body>
+</html>
