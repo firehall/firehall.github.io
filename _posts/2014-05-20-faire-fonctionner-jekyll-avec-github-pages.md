@@ -1,12 +1,12 @@
 ---
 layout: post_page
-title: Guide de démarrage Jekyll
+title: Créer un site avec Jekyll
 
 categories: jekyll
 tags:
 - Jekyll
 - tutoriel
-published: true
+published: false
 ---
 
 En cours...
