@@ -1,8 +1,8 @@
 ---
 layout: post_page
-title: Faire fonctionner Jekyll avec "Github Pages"
+title: Guide de démarrage Jekyll
 
-categories: toto
+categories: jekyll
 tags:
 - Jekyll
 - tutoriel
