@@ -82,9 +82,6 @@ On pourrait ajouter d'autres métadonnées :
 
 Ici on a ajouté une catégorie, des tags et définit que l'article est publié _(pour en faire un draft, il suffit de modifier true par false)_.
 
-
-	http://jeremyherve.com/2011/09/06/passer-de-wordpress-jekyll-deuxieme-partie/
-
 ####Format de la date
 
 Par défaut la date s'affiche en anglais. Pour l'afficher dans une autre langue, il va falloir la customiser :
