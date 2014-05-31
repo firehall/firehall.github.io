@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title> Utilisation de base de Jekyll  - Blog Firehall</title>
+		<!-- For responsive site
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="author" href="/humans.txt">
+		<meta name="description" content="Description Goes Here">
+		<link rel="stylesheet" href="/css/style.css">
+		<!--[if IE 7]>
+			<html class="ie7"> 
+			<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<!--[if IE 8]><html class="ie8"> <![endif]-->		
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">	    
+	</head>
+	<body>
+	<!-- Header
+	    ================================================== -->
+	<header>
+
+	</header>
+
+	<div class="top-strip"></div>
+<main class="content">
+    <section class="container">
+    	<div class="row-fluid">
+    		<article class="home-icon">
+				<a href="/">
+					<img src="/img/fh-icon.png" alt="blog firehall" width="60"/>
+					<!--<i class="icon-home"></i> -->
+				</a>
+			</article>
+			<article class="post">
+				<h5>
+                    
+                    31
+                    Mai
+                      
+                    2014
+                </h5>
+				<h2 class="content">Utilisation de base de Jekyll</h2>
+				<section>
+					<p>Second article sur Jekyll, découvrons comment il fonctionne, comment écrire en markdown ou encore comment installer un thème.</p>
+
+<p><em>Pour savoir comment installer Jekyll (sur windows), <a href="http://blog.firehall.fr/jekyll/2014/05/15/installer-jekyll-sur-windows.html">consultez l’article précédent</a></em></p>
+
+<h3 id="fonctionnement-de-base">Fonctionnement de base</h3>
+
+<p>Bien que Jekyll ne soit pas un CMS, il profite également d’un certain nombres d’automatisations qui facilitent l’ajout et la mise à jour des contenus.</p>
+
+<p>Analysons ce qu’il se passer lorsqu’on créer un nouveau site Jekyll :</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">jekyll</span> <span class="kp">new</span> <span class="n">mon</span><span class="o">-</span><span class="n">blog</span></code></pre></div>
+
+<p>Cette action va créer un nouveau dossier <em>“mon-blog”</em> <strong>contenant les fichiers et dossiers de base:</strong></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">_includes</span>
+<span class="n">_layouts</span>
+<span class="n">_posts</span>
+<span class="n">_site</span>
+<span class="n">_config</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">index</span><span class="o">.</span><span class="n">html</span></code></pre></div>
+
+<p>Il est bien entendu <strong>primordial de respecter la convention de nommage</strong>, à savoir que les dossiers et le fichier de configuration du site commencent invariablement par <code>_</code></p>
+
+<p><code>_includes</code><br />
+Ce dossier contiendra les fichiers communs à l’ensemble du site, peu importe le gabarit : comme le header, le footer, une sidebar etc…</p>
+
+<p><code>_layouts</code><br />
+Les différents gabarits de page (ex: une colonne, deux colonnes etc…).</p>
+
+<p><code>_posts</code><br />
+Les articles (dans le cadre d’un fonctionnement de type blog).</p>
+
+<p><code>_site</code><br />
+On y trouvera (entre autre) les pages statiques du site.</p>
+
+<p><code>_config.yml</code><br />
+Le fichier de configuration de notre site. C’est un des fichiers les plus importants, qui se rapproche d’un fichier de type “config.php” pour un site en php.</p>
+
+<p><code>index.html</code><br />
+La page d’index (accueil)</p>
+
+<h3 id="publier-un-nouvel-article">Publier un nouvel article</h3>
+
+<p>Dans l’arborescence aller dans <code>_posts</code><br />
+Créer un nouveau fichier structuré de cette manière :</p>
+
+<pre><code> année-mois-jour-tire-du-post.md
+</code></pre>
+
+<p><em>Exemple: 2014-05-31-mon-permier-post.md</em></p>
+
+<p>La page doit commencer par ( au minimum) les métadonnées suivantes:</p>
+
+<pre><code>---
+layout: post_page
+title: Mon premier post
+---
+</code></pre>
+
+<p>On définit donc le gabarit à utiliser (layout) et le titre du post.</p>
+
+<p>On pourrait ajouter d’autres métadonnées : </p>
+
+<pre><code>---
+categories: jekyll
+tags:
+- Jekyll
+- tutoriel
+published: true
+---
+</code></pre>
+
+<p>Ici on a ajouté une catégorie, des tags et définit que l’article est publié <em>(pour en faire un draft, il suffit de modifier true par false)</em>.</p>
+
+<pre><code>http://jeremyherve.com/2011/09/06/passer-de-wordpress-jekyll-deuxieme-partie/
+</code></pre>
+
+<h4 id="format-de-la-date">Format de la date</h4>
+
+<p>Par défaut la date s’affiche en anglais. Pour l’afficher dans une autre langue, il va falloir la customiser :</p>
+
+<p>Dans <code>_layout\post_page.html</code> (valable pour le thème de base), on va donc définir la date comme on le souhaite (dans mon cas : jj mois année): </p>
+
+<pre>
+\{\% assign m = page.date | date: "%-m" \%\}
+\{\{ page.date | date: "%-d" \}\}
+\{\% case m \%\}
+    \{\% when '1' \%\}Janvier
+    \{\% when '2' \%\}F&eacute;vrier
+    \{\% when '3' \%\}Mars
+    \{\% when '4' \%\}Avril
+    \{\% when '5' \%\}Mai
+    \{\% when '6' \%\}Juin
+    \{\% when '7' \%\}Juillet
+    \{\% when '8' \%\}Ao&ucirc;t
+    \{\% when '9' \%\}Septembre
+    \{\% when '10' \%\}Octobre
+    \{\% when '11' \%\}Novembre
+    \{\% when '12' \%\}D&eacute;cembre
+\{\% endcase \%\}
+\{\{ page.date | date: "%Y" \}\}
+</pre>
+
+<h3 id="quelques-exemples-de-formatage-en-markdown-">Quelques exemples de formatage en markdown :</h3>
+
+<h4 id="italique-balises--emem">Italique (balises : <code>&lt;em&gt;&lt;/em&gt;</code>)</h4>
+
+<pre><code>*texte en italique méthode 1*
+_texte en titalique méthode 2_
+</code></pre>
+
+<p>donnent:<br />
+<em>texte en italique méthode 1</em><br />
+<em>texte en titalique méthode 2</em></p>
+
+<h4 id="gras-balises--strongstrong">Gras (balises : <code>&lt;strong&gt;&lt;/strong&gt;</code>)</h4>
+
+<pre><code>**texte en bold méthode 1**
+__Texte en bold méthode 2__
+</code></pre>
+
+<p>donnent:<br />
+<strong>texte en bold méthode 1</strong><br />
+<strong>Texte en bold méthode 2</strong></p>
+
+<h4 id="titres-balises--h1h1-h2h2hnhn">Titres (balises : <code>&lt;h1&gt;&lt;/h1&gt;, &lt;h2&gt;&lt;/h2&gt;...&lt;hn&gt;&lt;/hn&gt;</code>)</h4>
+
+<pre><code># Titre1
+## Titre2
+### Titre3
+#### Titre4
+</code></pre>
+
+<h4 id="paragraphe-balises--pp">Paragraphe (balises : <code>&lt;p&gt;&lt;/p&gt;</code>)</h4>
+
+<pre><code>Ceci est un premier paragraphe, il faut sauter une ligne avant et après le texte.
+
+Ceci est un second paragraphe.
+</code></pre>
+
+<h4 id="retour--la-ligne-balises--br">Retour à la ligne (balises : <code>&lt;br/&gt;</code>)</h4>
+
+<pre><code>Ceci est la première phrase d'un paragraphe.  
+Ce retour à la ligne est réalisé en terminant la phrase précédente par deux espaces.
+</code></pre>
+
+<h4 id="un-lien-balises-aa">Un lien (balises <code>&lt;a&gt;&lt;/a&gt;</code>)</h4>
+
+<pre><code>[lien vers google] (http://www.google.fr "lien vers google (balise title)")
+</code></pre>
+
+<p>donne :<br />
+<a href="http://www.google.fr" title="lien vers google (balise title)">lien vers google</a></p>
+
+<h4 id="insrer-une-image-balise-img">Insérer une image (balise <code>&lt;img/&gt;</code>)</h4>
+
+<pre><code>![texte alternatif pour les liseuses par exemple, important pour l'accessibilité!](/img/fh-icon.png "texte pour le titre (balise title (survol de la souris")
+</code></pre>
+
+<p><img src="/img/fh-icon.png" alt="texte alternatif pour les liseuses par exemple, important pour l'accessibilité!" title="texte pour le titre (balise title (survol de la souris" /></p>
+
+<h4 id="liste-non-ordonne-balises--ulliliul">Liste non-ordonnée (balises : <code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;</code>)</h4>
+
+<pre><code>* un élément de liste
+* un deuxième
+    * sous-élément
+</code></pre>
+
+<p>donnent :</p>
+
+<ul>
+  <li>un élément de liste</li>
+  <li>un deuxième
+    <ul>
+      <li>sous-élément</li>
+    </ul>
+  </li>
+</ul>
+
+<p><em><strong>Rque:</strong> il est important de sauter une ligne avant le premier élément de liste</em></p>
+
+<h4 id="liste-ordonne-balises--olliliol">Liste ordonnée (balises : <code>&lt;ol&gt;&lt;li&gt;&lt;/li&gt;&lt;/ol&gt;</code>)</h4>
+
+<pre><code>1. un élément de liste
+2. un deuxième
+</code></pre>
+
+<p>donnent :</p>
+
+<ol>
+  <li>un élément de liste</li>
+  <li>un deuxième</li>
+</ol>
+
+<p><em><strong>Rque:</strong> il est important de sauter une ligne avant le premier élément de liste</em></p>
+
+<h4 id="citation-balises--blockquoteblockquote">Citation (balises : <code>&lt;blockquote&gt;&lt;/blockquote&gt;</code>)</h4>
+
+<pre><code>&gt; Citation dans un élément blockquote
+</code></pre>
+
+<p>donne : </p>
+
+<blockquote>
+  <p>Citation dans un élément blockquote</p>
+</blockquote>
+
+<p><strong>_Rque:</strong> il est important de sauter une ligne avant le code</p>
+
+<h4 id="paragraphe-de-code-balises--prepre">Paragraphe de code (balises : <code>&lt;pre&gt;&lt;/pre&gt;</code>)</h4>
+
+<pre><code>Ce pragraphe de code s'obtient en commencant par 4 espaces.
+Un simple retour à la ligne permet de créer une seconde ligne de code.
+</code></pre>
+
+<p><strong>Rque:</strong> il est important de sauter une ligne avant le code</p>
+
+<h4 id="balise-code-codecode">Balise code <code>&lt;code&gt;&lt;/code&gt;</code></h4>
+
+<pre><code>`&lt;p&gt;&lt;/p&gt;`
+</code></pre>
+
+<p>donne :<br />
+<code>&lt;p&gt;&lt;/p&gt;</code></p>
+
+<p><strong>Rque:</strong> Sur un clavier windows ` s’obtient en maintenant <code>Alt Gr</code> + <code>7</code></p>
+
+<h4 id="les-limites-de-markdown">Les limites de MarkDown…</h4>
+
+<p>Comme on peut le constater, écrire un article pour Jekyll dans un éditeur de texte devient rapidement intuitif et se révèle très productif en terme de temps (pour un développeur, celà peut se révéler même plus rapide que de passer par un éditeur WYSIWYG).</p>
+
+<p>Pour autant, tout n’est pas parfait. Prenons l’exemple de l’insertion d’une image:<br />
+ Que se passe-t-il si j’avais voulu manipuler la largeur du logo ou ajouter une <em>class</em> à ma balise <code>&lt;img&gt;</code>?<br />
+ A priori il existe des solutions (comme <a href="http://stackoverflow.com/questions/14675913/how-to-change-image-size-markdown">ici</a> ou <a href="https://github.com/jeromyanglim/rmarkdown-rmeetup-2012/issues/4">là</a>), mais elles semblent dépendre de nombreux facteurs (OS, versions de Ruby, gem de markdown installés… Voir tout ca imbriqué!)<br />
+ Dans ce cas, le plus simple est peut-être encore de passer par ce bon vieux langage html, qui -suprise!- est parfaitement interprété :</p>
+
+<pre><code> &lt;img src="/img/fh-icon.png" width="100" class="toto"/&gt;
+</code></pre>
+
+<p><img src="/img/fh-icon.png" width="100" class="toto" /><br />
+ Ce qui produit l’affichage du logo avec une largeur contrainte à 100px et une <em>class toto</em> (qui n’existe pas pour le coup ;) )<br />
+ On peut évidement en faire de même avec n’importe quelle balise html.</p>
+
+<p>On peut ainsi conclure que si le langage Markdown a ses limites, elles ne sont finalement pas bloquantes étant donné sa grande souplesse d’utilisation qui permet de <em>mixer</em> markdown et html.</p>
+
+<h3 id="installer-un-thme">Installer un thème</h3>
+
+<p>Pour aller plus loin avec l’utilisation de Jekyll, on peut bien évidement se créer son propre thème de A à Z.<br />
+ On peut aussi plus simplement en récupérer un et l’installer pour l’utiliser tel quel ou le customiser (<a href="http://jekyllthemes.org/">Voici par exemple un site ou l’on peut télécharger différents thèmes</a>)</p>
+
+<p>Pour installer un nouveau thème, il va falloir installer la Gem Bundler.  </p>
+
+<p>Avec la console Ruby, on se rend dans le dossier d’installation du site Jekyll :</p>
+
+<pre><code>cd c:\vers\dossier
+</code></pre>
+
+<p>… Pour y exécuter l’installation de la gem Bundler :  </p>
+
+<pre><code>gem install bundler
+</code></pre>
+
+<p>Il ne reste plus qu’à dézipper le thème dans le dossier du site et lancer Jekyll :</p>
+
+<pre><code>jekyll serve
+</code></pre>
+
+					<hr>
+				</section>
+				<section style="font-weight:bold; margin-bottom: 2em;">
+					 
+							<a rel="prev" class="a-hover"href="/jekyll/2014/05/15/installer-jekyll-sur-windows.html"><i class="icon-double-angle-left"></i> Installer Jekyll Sur Windows</a>
+						
+						
+				</section>
+			</article>
+		</div>
+	</section>
+</main>
+
+
+	<footer>
+		<div class="container">
+			<a href="http://richbray.me/frap/">Frappuccino</a> | Copyright or profile stuff goes here
+		</div>
+	</footer>
+
+	<!-- Footer
+	    ================================================== -->
+
+	<!-- Javascripts 
+	    ================================================= -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/custom.js"></script>
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+		// analytics code
+    </script>	
+	</body>
+</html>
