@@ -6,7 +6,7 @@ categories: jekyll
 tags:
 - Jekyll
 - tutoriel
-published: false
+published: true
 ---
 
 En cours...
