@@ -250,3 +250,11 @@ Avec la console Ruby, on se rend dans le dossier d'installation du site Jekyll :
 Il ne reste plus qu'à dézipper le thème dans le dossier du site et lancer Jekyll :
 
 	jekyll serve
+
+### Sources :
+
+Markdown
+[http://fr.wikipedia.org/wiki/Markdown](http://fr.wikipedia.org/wiki/Markdown)
+
+Formatage de dates avec liquid :
+[http://alanwsmith.com/jekyll-liquid-date-formatting-examples](http://alanwsmith.com/jekyll-liquid-date-formatting-examples)
