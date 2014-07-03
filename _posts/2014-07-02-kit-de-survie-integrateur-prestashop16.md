@@ -2,7 +2,7 @@
 layout: post_page
 title: Kit de survie de l'intégrateur Prestashop 1.6
 
-categories: prestashop, intégration
+categories: prestashop integration
 tags:
 - prestashop
 - tutoriel
