@@ -6,7 +6,7 @@ categories: jekyll
 tags:
 - Jekyll
 - tutoriel
-published: true
+published: false
 ---
 
 Troisième et dernier article sur la présentation de Jekyll, découvrons aujourd'hui comment l'héberger sur github-pages.  

@@ -6,7 +6,7 @@ categories: prestashop, intégration
 tags:
 - prestashop
 - tutoriel
-published: false
+published: true
 ---
 
 
@@ -42,7 +42,7 @@ Dans ce template on va bien entendu trouver les infos relatives au footer et la 
 Il correspond à la bannière de pub en haut de page : 
 - Matérialisé dans header.tpl (l.77)
 - Module concerné : 
-Bloc bannière  - v1.3
+01 Bloc bannière  - v1.3
 Désactiver le module peut suffire "visuellement", en revanche pour faire les choses biens il conviendrait de supprimer de header.tpl  (l.74 à 80):
 <div class="banner">
     <div class="container">
@@ -57,24 +57,24 @@ Désactiver le module peut suffire "visuellement", en revanche pour faire les ch
 Il correspond aux éléments de navigations de la partie haute du header.
 - Matérialisé dans header.tpl (l.84)
 - Modules concernés :
-Bloc informations clients
+02 Bloc informations clients
     Dans les faits il correspond au compte client (connexion, édition de compte et déconnexion, lorsqu'un utisateur est connecté).
 Bloc devises
     Un bloc présentant les différentes devises de paiement acceptées (pas visible par défaut, il faut activer les devises).
 Bloc langues
     Un bloc avec les drapeaux des différentes langues, lorsque le multilingue est activé (ce qui n'est pas le cas par défaut).
-Bloc contact
+03 Bloc contact
     Concrètement, ce module affiche le numéro de téléphone et le lien contactez-nous.
     
 ##### displayTop
 
 - Matérialisé dans header.tpl (l.96) {if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
 - Modules concernés :
-Bloc recherche rapide
+04 Bloc recherche rapide
     Le moteur de recherche
-Bloc panier
+05 Bloc panier
     Le bouton panier
-Menu haut horizontal
+06 Menu haut horizontal
     Le menu principal
 Bloc informations clients
     Dans les faits il correspond au compte client (connexion, édition de compte et déconnexion, lorsqu'un utisateur est connecté).
@@ -88,9 +88,9 @@ Bloc liste de cadeaux
 
 - Matérialisé dans header.tpl (l.108) 
 - Modules concernés :
-Diaporama (image slider) pour votre page d'accueil
+07 Diaporama (image slider) pour votre page d'accueil
     Le slide en homepage
-Configurateur de thèmes
+08 Configurateur de thèmes
     Module qui permet de gérer certains éléments du thème (notament le petit bouton pour modifier les couleurs du thème), mais aussi les images de produits à droite du slider en homepage.
 
 
@@ -126,12 +126,18 @@ Par défaut, aucun module n'est accroché à ce hook.
 
 - Matérialisé dans footer.tpl (l.37)
 - Modules concernés : 
-Bloc newsletter
+09 Bloc newsletter
     Inscription à la lettre d'informations
-Bloc social
-Bloc catégories
-Bloc CMS
-Bloc Mon compte dans le pied de page
-Bloc informations de contact
+10 Bloc social
+    Réseaux sociaux
+11 Bloc catégories
+    Afficher les catégories
+12 Bloc CMS
+    Liens vers les pages CMS
+13 Bloc Mon compte dans le pied de page
+    Liens vers les pages relatives au compte client
+14 Bloc informations de contact
+    Coordonnées complètes
 Récupération des données statistiques
+    Invisible en front-end, permet de gérer les stats du site
 Configurateur de thèmes.
