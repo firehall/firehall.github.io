@@ -35,6 +35,8 @@ Dans ce template on va bien entendu trouver les infos relatives au footer et la 
 
 ### Les hooks
 
+![Les hooks du theme standard de prestashop 1.6](/img/prestashop16-home-hooks.jpg)
+
 #### Les hooks du header
 
 ##### displayBanner
