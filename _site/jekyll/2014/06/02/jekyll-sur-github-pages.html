@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title> Héberger Jekyll sur github-pages  - Blog Firehall</title>
+		<!-- For responsive site
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="author" href="/humans.txt">
+		<meta name="description" content="Description Goes Here">
+		<link rel="stylesheet" href="/css/style.css">
+		<!--[if IE 7]>
+			<html class="ie7"> 
+			<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<!--[if IE 8]><html class="ie8"> <![endif]-->		
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">	    
+	</head>
+	<body>
+	<!-- Header
+	    ================================================== -->
+	<header>
+
+	</header>
+
+	<div class="top-strip"></div>
+<main class="content">
+    <section class="container">
+    	<div class="row-fluid">
+    		<article class="home-icon">
+				<a href="/">
+					<img src="/img/fh-icon.png" alt="blog firehall" width="60"/>
+					<!--<i class="icon-home"></i> -->
+				</a>
+			</article>
+			<article class="post">
+				<h5>
+                    
+                    2
+                    Juin
+                      
+                    2014
+                </h5>
+				<h2 class="content">Héberger Jekyll sur github-pages</h2>
+				<section>
+					<p>Troisième et dernier article sur la présentation de Jekyll, découvrons aujourd’hui comment l’héberger sur github-pages.  </p>
+
+<p><em><strong>Prérequis:</strong> Avoir installé jekyll en local (<a href="http://blog.firehall.fr/jekyll/2014/05/15/installer-jekyll-sur-windows.html">sur windows?</a>)</em><br />
+<a href="http://nodejs.org/download/">Installer NodeJS</a><br />
+<a href="http://git-scm.com/downloads">Installer Git</a> <em>pour ce dernier, sur windows, on prendra soin de choisir l’option “Run Git form the Windows Command Prompt”, dans l’écran concernant l’ajustement des variables d’environnement.</em><br />
+<a href="http://www.alsacreations.com/tuto/lire/1609-bower-pour-les-nuls.html">Plus d’infos sur l’installation de NodeJs et GIT sur l’article d’Alsacréations concernant Bower</a></p>
+
+<h3 id="crer-une-page-github">Créer une page Github</h3>
+
+<p>Pour héberger son site sur Github, il faut bien entendu commencer par <a href="https://github.com/">se créer un compte sur ce dernier</a>.<br />
+Une fois fait, il faut se connecter et créer un “repository” <strong>qui doit être nommé de la façon suivante :</strong><br />
+<strong>[nom_du_compte].github.io</strong> <em>(dans mon cas : firehall.github.io)</em>  </p>
+
+<p>Pour les <em>windowsiens</em>, on vérifie qu’on a bien les variables d’environnement suivantes (PATH utilisateur) (sinon on les ajoute) :  </p>
+
+<pre><code>C:\Users\******\AppData\Roaming\npm; C:\Program Files (x86)\Git;
+</code></pre>
+
+<h3 id="clone-add-commit-et-push">Clone, Add, Commit et Push!</h3>
+
+<p>On va cloner sur notre ordinateur le répertoire que l’on vient de créer sur github :<br />
+Pour ce faire, on ouvre la console (de préférence celle de GIT ou de Node) :</p>
+
+<pre><code>cd c:/[dossier_en_local_pour_cloner]
+git clone https://github.com/firehall/firehall.github.io
+clone http
+</code></pre>
+
+<p>Voilà notre repository est clonée en local.<br />
+Libre à nous maintenant de placer les fichiers de Jekyll dans le dossier “firehall.github.io” (modifiez firehall, par votre compte bien sur…).</p>
+
+<p>Pour envoyer les modifications en ligne, il ne reste plus qu’à taper les commandes comme suit :</p>
+
+<pre><code>git add --all
+git commit -m "Mon premier commit"
+git push
+</code></pre>
+
+<p>Dans la première ligne on indique qu’on prend en compte l’ensemble des modifs éffectuées. Ensuite on donne un nom à notre commit (on est sur github…) et enfin on “push”, c’est-à-dire qu’on transfère les fichiers sur les serveurs distants.</p>
+
+<h3 id="ca-ne-marche-pas-parce-que-je-suis-sur-windows">Ca ne marche pas (parce-que je suis sur windows?)</h3>
+
+<p>Personnellement j’ai eu quelques difficultés à faire ces manips (suivant le pc, à chaque fois sur un environnement Windows (7 pro)), voici quelques petits conseils :<br />
+Si le push ne fonctionne pas, on peut tenter de le forcer :</p>
+
+<pre><code>git push -f
+</code></pre>
+
+<p>Si votre ordi est sur un environnement réseau sécurisé, il va peut-être falloir configurer la connexion SSH (si vous avez par exemple une erreur du type <strong>error user unknown</strong>).<br />
+Pour ce faire, suivez les instruction de <a href="https://help.github.com/articles/generating-ssh-keys">l’aide de github</a>  </p>
+
+<p>Il faudra ensuite redéfinir les accès :</p>
+
+<pre><code>git remote set-url origin git@github.com:firehall/firehall.github.io
+git push
+</code></pre>
+
+<p>On vous demandera ensuite d’entrer la phrase associée à la clé SSH (et votre login/mdp github bien sur).</p>
+
+<p>Si rien de tout ca ne marche (ca m’est arrivé ;)), il reste la solution “pour les faibles” ;) : <strong>utiliser l’application github pour windows</strong>.<br />
+Alors ok, ce n’est pas très gratifiant (pas de push en lignes de commandes), mais ca marche parfaitement bien et au final c’est tout ce qui compte!<br />
+<a href="https://windows.github.com/">Github pour windows</a></p>
+
+<h3 id="utiliser-son-nom-de-domaine">Utiliser son nom de domaine</h3>
+
+<p>A ce stade votre Jekyll est en ligne sur github avec une adresse de type : <strong>“firehall.github.io”</strong>
+Si vous avez votre propre nom de domaine, vous pouvez tout à fait l’utiliser avec vos pages Github :<br />
+Créez un fichier CNAME à la racine du projet (firehall.github.io) avec votre nom de domaine (ou sous-domaine dans mon cas) : </p>
+
+<pre><code>blog.firehall.fr
+</code></pre>
+
+<p>Connectez-vous à l’administration de votre hébergeur pour y renseigner un champ A qui fera pointer votre domaine sur l’IP de github : <strong>204.232.175.78</strong>.<br />
+Il ne reste plus qu’à attendre la propagation des DNS et le tour est joué!</p>
+
+<h3 id="dautres-sources-et-ressources-utiles-sur-le-sujet">D’autres sources et ressources utiles sur le sujet:</h3>
+
+<p><a href="http://martinbuberl.com/blog/setup-jekyll-on-windows-and-host-it-on-github-pages/">http://martinbuberl.com/blog/setup-jekyll-on-windows-and-host-it-on-github-pages/</a><br />
+<a href="https://help.github.com/categories/20/articles">https://help.github.com/categories/20/articles</a><br />
+<a href="https://help.github.com/articles/creating-pages-with-the-automatic-generator">https://help.github.com/articles/creating-pages-with-the-automatic-generator</a><br />
+<a href="https://pages.github.com/">https://pages.github.com/</a><br />
+<a href="http://christopheducamp.com/2013/12/21/demarrer-avec-pages-github/">http://christopheducamp.com/2013/12/21/demarrer-avec-pages-github/</a><br />
+<a href="http://www.thinkful.com/learn/a-guide-to-using-github-pages/">http://www.thinkful.com/learn/a-guide-to-using-github-pages/</a><br />
+<a href="http://nicoespeon.com/fr/2013/04/faire-son-blog-avec-jekyll/">http://nicoespeon.com/fr/2013/04/faire-son-blog-avec-jekyll/</a><br />
+<a href="http://hugogiraudel.com/2013/02/21/jekyll/">http://hugogiraudel.com/2013/02/21/jekyll/</a></p>
+
+					<hr>
+				</section>
+				<section style="font-weight:bold; margin-bottom: 2em;">
+					 
+							<a rel="prev" class="a-hover"href="/jekyll/2014/05/31/utilisation-de-base-de-jekyll.html"><i class="icon-double-angle-left"></i> Utilisation de base de Jekyll</a>
+						
+						 
+							<a rel="next" style="float:right" class="a-hover"href="/prestashop/integration/2014/07/02/kit-de-survie-integrateur-prestashop16.html">Kit de survie de l'intégrateur Prestashop 1.6 <i class=" icon-double-angle-right"></i></a>
+					
+				</section>
+				    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'firehall'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+			</article>
+		</div>
+	</section>
+</main>
+
+
+	<footer>
+		<div class="container">
+			<a href="http://richbray.me/frap/">Frappuccino</a> | Copyright or profile stuff goes here
+		</div>
+	</footer>
+
+	<!-- Footer
+	    ================================================== -->
+
+	<!-- Javascripts 
+	    ================================================= -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/custom.js"></script>
+	    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'firehall'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+    <!-- Analytics
+    ================================================== -->
+    <script>
+		// analytics code
+    </script>
+    	
+	</body>
+</html>
