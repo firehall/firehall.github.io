@@ -4,7 +4,7 @@ title: Optimiser ses projets web (front-end)
 
 categories: integration
 tags:
-published: true
+published: false
 ---
 
 Entamer un nouveau projet web, c'est souvent grisant, mais c'est aussi bourré de redites : installer et configurer toujours les mêmes dossiers et fichiers : librairies, frameworks etc...
