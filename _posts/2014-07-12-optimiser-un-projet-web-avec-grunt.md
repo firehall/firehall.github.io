@@ -9,7 +9,7 @@ Gruntjs permet d'automatiser un certains nombres de tâches , telles que : conca
 
 __Prérequis :__ Pour utiliser Grunt il faut avoir installé Nodejs.
 
-Voici un rapide résumé des actions à réaliser pour optimiser les fichiers d'un projets web.
+Voici 22un rapide résumé des actions à réaliser pour optimiser les fichiers d'un projets web.
 
 On ouvre une nouvelle invit de commande NodeJs et on se rend dans le bon dossier :
 
