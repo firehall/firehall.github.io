@@ -2,7 +2,7 @@
 layout: post_page
 title: ListIt2 le metamodule de CMSMS
 
-published: true
+published: false
 ---
 
 ###Installation
@@ -18,7 +18,7 @@ Dans l'onglet "options" on peut renommer l'instance pour un nom plus compréhens
 _**Rque:** Pour voir le nouveau nom du module, il va falloir vider le cache de cmsms :  
 **Administration du site > Maintenance du système > cache et contenu > vider le cache**_
 
-###Créer les champs de son module => ok
+###Créer les champs de son module
 
 On va ensuite créer nos champs, directement dans l'onglet **Définition de champs**.
 
