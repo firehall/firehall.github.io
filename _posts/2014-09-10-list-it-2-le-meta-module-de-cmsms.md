@@ -2,7 +2,7 @@
 layout: post_page
 title: ListIt2 le metamodule de CMSMS
 
-published: false
+published: true
 ---
 
 ###Installation
@@ -78,7 +78,51 @@ On pourrait aussi décider d'afficher un bout de code, QUE si le champ est rempl
     {if {$item->fielddefs.alias-du-champ.value} !=NULL}
         <div>{$item->fielddefs.alias-du-champ.value}</div>
     {/if}
-    
+
+###Navigation entre les _articles_
+
+Par défaut, il n'est pas possible de mettre en place une navigation entre les différents "articles" (en mode "détail") (comme c'est le cas par exemple pour le module de news).
+
+On commence par créer un nouveau gabarit de sommaire : **prevnext**, avec pour contenu :
+
+    {foreach from=$items item=prevnext}
+        {capture append='allIDs'}{$prevnext->item_id}{/capture}
+        {capture append='allURLs'}{$prevnext->url}{/capture}
+
+        {capture append='allNAMEs'}{$prevnext->title|cms_escape}{/capture}
+    {/foreach}
+
+_On créait donc une boucle, qui récupère l'ID, l'URL et le nom des articles_
+
+Dans un second temps, nous allons intégrer le template de sommaire que nous venons de créer, dans le (ou les) gabarit(s) de détail à utiliser :
+
+        {capture assign='currentID'}{$item->item_id}{/capture}
+		{capture assign="junkk"}
+			{ListIt2etude summarytemplate="prevnext"}
+		{/capture}
+
+		{foreach from=$allIDs item=someID name=findmyID}
+			{if $currentID == $someID}
+				{assign var=currentkey value=$smarty.foreach.findmyID.index}
+			{/if}
+		{/foreach}
+
+		<nav class="refNav clearfix">
+			{assign var=nextkey value=$currentkey-1}
+			{if isset($allURLs[$nextkey])}
+				<a id="prevRef" href="{$allURLs[$nextkey]}">{$allNAMEs[$nextkey]}</a>
+			{/if}
+			{assign var=prevkey value=$currentkey+1}
+			{if isset($allURLs[$prevkey])}
+				<a id="nextRef" href="{$allURLs[$prevkey]}">{$allNAMEs[$prevkey]}</a>
+			{/if}
+		</nav>
+        
+**Remarque :** Cette solution (trouvée sur le web, sur un article concernant le module CGBlog de l'excellent site [i-do-this.com](http://www.i-do-this.com/blog/Prev-Next-links-in-CGBlog/57 "Lien vers l'article"), a bien entendu ces limites.  
+Par exemple, elle ne prend pas en compte la catégorie courante. La navigation va se faire depuis l'ID d'un article. Admettons que les articles 1 et 3 sont taggé dans la catégorie "toto" et l'article 2 dans la catégorie "Lulu".  
+Si on se trouve sur la page de détail de l'article 1, le prochain article sera l'article 2, et non l'article 3 (ce qui aurait donc été plus pertinent puisqu'il partage la même catégorie que l'article en cours).  
+La solution à ce problème est, en ce qui me concerne, de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant... Mais ca fonctionne (d'autant que logiquement les gabarits partageront le même code, il s'agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l'interface d'administration de CMSMS).
+
 ###Exemple de gabarit ListIt2
 
 _Cet exemple fonctionne aussi bien pour un gabarit de sommaire, que de détail_
