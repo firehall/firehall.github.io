@@ -198,6 +198,31 @@ Si on se trouve sur la page de détail de l’article 1, le prochain article ser
 La solution à ce problème peut être de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant…<br />
 Mais ca fonctionne (d’autant que logiquement les gabarits partageront le même code, il s’agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l’interface d’administration de CMSMS).</p>
 
+<h3 id="optimiser-le-rfrencement-en-vue-de-dtail">Optimiser le référencement en vue de détail</h3>
+
+<p><em>(Ajout du 04 novembre 2014)</em></p>
+
+<p>Un des principaux défauts du module est peut-être sa faible optimisation pour le référencement / positionnement des articles.<br />
+En effet, les articles sont intégrés dans des pages, ce sont donc les metadonnées de ces dernières qui vont servir au référencement : pas terrible donc, de se retrouver avec la même description et un titre commun, peu importe l’article…  </p>
+
+<p>Encore une fois, une solution existe et elle est plutôt simple à mettre en place :</p>
+
+<p>Dans le <strong>gabarit list-it de détail</strong>, on va créer deux variables, qui vont nous servir à modifier les meta title et description :</p>
+
+<pre><code>{assign var='refpagetitle' value=$item-&gt;title}
+{assign var='refmetadesc' value=$item-&gt;fielddefs.champ.value}
+</code></pre>
+
+<p>Pour la balise title, on utilise donc simplement le titre de l’article, pour le champ description, on peut soit créer un champ spécialement pour cette balise (que l’on remplirera en backend mais ne sera pas visible en front) ou utiliser un champ existant tel qu’un champ ‘intro’.</p>
+
+<p>Dans le <strong>gabarit de page</strong> correspondant à la page affichant les articles en mode de détail, on va ajouter les meta sous forme de conditions, comme suit :</p>
+
+<pre><code>    &lt;title&gt;{if !empty($refpagetitle)}{$refpagetitle|strip_tags}{else}{title}{/if} - {sitename}&lt;/title&gt;  
+    {if !empty($refmetadesc)}&lt;meta name="description" content="{$refmetadesc|strip_tags}" /&gt;{/if}
+</code></pre>
+
+<p>Si on est sur le détail d’un article, la balise title prendra le nom de l’article et la description le champ que nous avons créé à cette fin. Sinon, le CMS reprendra son fonctionnement “normal”.</p>
+
 <h3 id="exemple-de-gabarit-listit2">Exemple de gabarit ListIt2</h3>
 
 <p><em>Cet exemple fonctionne aussi bien pour un gabarit de sommaire, que de détail</em></p>

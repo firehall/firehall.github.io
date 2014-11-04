@@ -130,6 +130,29 @@ Si on se trouve sur la page de détail de l'article 1, le prochain article sera 
 La solution à ce problème peut être de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant...  
 Mais ca fonctionne (d'autant que logiquement les gabarits partageront le même code, il s'agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l'interface d'administration de CMSMS).
 
+###Optimiser le référencement en vue de détail
+
+_(Ajout du 04 novembre 2014)_
+
+Un des principaux défauts du module est peut-être sa faible optimisation pour le référencement / positionnement des articles.  
+En effet, les articles sont intégrés dans des pages, ce sont donc les metadonnées de ces dernières qui vont servir au référencement : pas terrible donc, de se retrouver avec la même description et un titre commun, peu importe l'article...  
+
+Encore une fois, une solution existe et elle est plutôt simple à mettre en place :
+
+Dans le __gabarit list-it de détail__, on va créer deux variables, qui vont nous servir à modifier les meta title et description :
+
+    {assign var='refpagetitle' value=$item->title}
+    {assign var='refmetadesc' value=$item->fielddefs.champ.value}
+
+Pour la balise title, on utilise donc simplement le titre de l'article, pour le champ description, on peut soit créer un champ spécialement pour cette balise (que l'on remplirera en backend mais ne sera pas visible en front) ou utiliser un champ existant tel qu'un champ 'intro'.
+
+Dans le __gabarit de page__ correspondant à la page affichant les articles en mode de détail, on va ajouter les meta sous forme de conditions, comme suit :
+        
+        <title>{if !empty($refpagetitle)}{$refpagetitle|strip_tags}{else}{title}{/if} - {sitename}</title>  
+	    {if !empty($refmetadesc)}<meta name="description" content="{$refmetadesc|strip_tags}" />{/if}
+
+Si on est sur le détail d'un article, la balise title prendra le nom de l'article et la description le champ que nous avons créé à cette fin. Sinon, le CMS reprendra son fonctionnement "normal".
+
 ###Exemple de gabarit ListIt2
 
 _Cet exemple fonctionne aussi bien pour un gabarit de sommaire, que de détail_
