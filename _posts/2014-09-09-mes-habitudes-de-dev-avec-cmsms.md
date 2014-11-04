@@ -5,7 +5,8 @@ title: Base de travail pour développer un site avec CmsMadeSimple
 published: true
 ---
 
-Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintenant et je dois avouer que c'est un CMS que j'apprécie particulièrement que ce soit pour sa très grande souplesse, sa prise en main intuitive et son respect des standards (web et accessibilité). A la manière d'un cuisinier, je présente ici ma __"base de travail"__ et le process que j'emploie. Nul doute qu'avec mes habitudes, le cms n'est sans doute pas optimisé au maximum, mais il s'accorde parfaitement à ma façon d'aborder un projet web et ca me convient! ;)
+Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintenant et j'avoue que c'est un CMS que j'apprécie particulièrement, que ce soit pour sa très grande souplesse, sa prise en main intuitive et son respect des standards (web et accessibilité).  
+Dans cet article, je présente sans prétention la manière dont j'installe et utilise ce CMS.
 
 ###Installation
 
@@ -13,7 +14,7 @@ Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintena
 
 2. Je dézippe les archives et les fusionne pour obtenir une version complète du cms (EN + FR).
 
-3. Je transfert l'ensemble des fichiers sur le ftp et modifie les droits sur les dossiers suivants (777 - 755 pour OVH) : 
+3. Je transfert l'ensemble des fichiers sur le ftp et modifie les droits sur les dossiers suivants (777 _ou 755 pour OVH_) : 
 
 * tmp/templates_c
 * tmp/cache
@@ -36,76 +37,85 @@ Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintena
 * img
 * js
 
-_Le CMS possède bien entendu sa propre gestion des CSS (performante!), mais j'avoue que j'aime bien utiliser ma feuille de style externe, issue d'une première intégration (html-css-js) d'après les maquettes du projet... C'est inhérent à mon process..._
+_Le CMS possède bien entendu sa propre gestion des CSS (performante!), mais j'ai tendance à plutôt utiliser une feuille de style externe, issue d'une première intégration (html-css-js) d'après les maquettes du projet..._
 
 ###Gabarits
 
 Les balises Smarty utiles (voir indispensables) (dans l'ordre) :
 
 ####Balises de métadonnées (entre <head> et </head>):
+    
+On place cette balise en tout début de fichier, on évite tout espace ou saut de ligne avant celle-ci) : 
 
     {process_pagedata}
     
-_On place cette balise en tout début de fichier, on évite tout espace ou saut de ligne avant celle-ci)_
+Titre de la page | nom du site (défini durant l'install et modifiable via l'admin) :
 
     <title>{title} | {sitename}</title>
-    
-_Titre de la page | nom du site (défini durant l'install et modifiable via l'admin)_
+
+Métadonnées :  
 
     {metadata}
 
-_métadonnées..._
+Les feuilles de styles (css) :  
 
     {cms_stylesheet}
     
-_Quand je laisse le CMS gérer les CSS_
+
 
 ####Balises de métadonnées (entre <body> et </body>):
+
+La balise qui affiche le menu (on peut choisir le template, les modifier ou en ajouter directement via ftp : "modules/MenuManager/templates/nom_template.tpl" :  
+
     {menu template='cssmenu.tpl'}
     
-_La balise qui affiche le menu (on peut choisir le template, les modifier ou en ajouter directement via ftp : "modules/MenuManager/templates/nom_template.tpl"_
+N'afficher que le premier niveau du menu (parents) :
 
     {menu template='cssmenu.tpl' collapse="1"}
     
-_N'afficher que le premier niveau_
+N'afficher que le niveau 2 :  
 
     {menu template='cssmenu.tpl' childrenof="alias-de-la-page"}
     
-_N'afficher que le niveau 2_
+Le titre de la page en cours :
 
     {title}
     
-_Le titre de la page en cours_
+Le fil d'arianne (breadcrumbs) :  
     
     {breadcrumbs delimiter=">"}
-    
-_Le fil d'arianne_
+
+Le contenu principal de la page :  
 
     {content}
     
-_Le contenu de la page_
+
 
 ####Gabarits plus complexes (plusieurs zones de saisie):
 
-De base, dans l'édition d'une page on peut saisir le titre de la page, le nom qui sera utilisé pour le menu, et le contenu. Mais on peut aller (beaucoup) plus loin et faciliter la saisie de l'utilisateur final sans qu'il risque (ou presque) de ruiner la mise en page de son site. Pour ce faire, on peut définir plusieurs zones de saisies, celà se fait en deux temps : on initilalise les zones de contenues puis on les appelle dans le gabarit.
+De base, dans l'édition d'une page on peut saisir le titre de la page, le nom qui sera utilisé pour le menu, et le contenu.  
+Mais on peut aller plus loin et faciliter la saisie de l'utilisateur final sans qu'il risque (ou presque) de ruiner la mise en page de son site.  
+Pour ce faire, on peut définir plusieurs zones de saisies. Celà se fait en deux temps : on initilalise les zones de contenues puis on les appelle dans le gabarit.
 
-**L'initialisation se fait en tout début de document, tout de suite après `{process_pagedata}`**
+**L'initialisation se fait en tout début de document, tout de suite après `{process_pagedata}`** :  
 
     {content assign='monbloc' label="Mon bloc" tab="nom de l'onglet" wysiwyg=true oneline=true}
     
 _**assign** : Le nom du bloc, tel qu'on va l'appeler plus loin dans le gabarit._  
 _**label** : Le nom du bloc dans la page d'admin_  
 _**tab** : l'onglet dans lequel apparaitra le bloc dans l'admin_  
-_**wysiwyg** : activer le wysiwyg ou non_  
-_**oneline** : champ input, ou zone de texte (textarea - par défaut) dans l'admin.
+_**wysiwyg** : activer le wysiwyg ou non (valeurs: true ou false)_  
+_**oneline** : champ input, ou zone de texte (textarea - par défaut) dans l'admin (valeurs: true ou false).
 
 Comme évoqué, on peut ajouter autant de zones de textes que l'on veut, mais il en faut au moins une (qui prendra la forme que nous venons de voir, et qui sera obligatoire (sans quoi on ne pourra pas valider la page).
 
+Ajouter une seconde zone de saisie :  
+
     {content block=nom du bloc assign='monbloc' label="Mon bloc" tab="nom de l'onglet" wysiwyg=true oneline=true}
     
-_**block** : Définit qu'il s'agit d'un second bloc de contenu (secondaire)_
+_**block** : Définit qu'il s'agit d'un bloc de contenu secondaire_
 
-On peut ensuite "appeler" les blocs dans la partie contenu du gabarit (<body></body>):
+On peut ensuite "appeler" les blocs dans la partie contenu du gabarit (<body></body>) :
 
     {$nom_du_block1}
     (...)
@@ -114,10 +124,12 @@ On peut ensuite "appeler" les blocs dans la partie contenu du gabarit (<body></b
 
 ####Autres balises utiles:
 
-**Liens pages internes** :
+**Liens pages internes** :  
 
     {cms_selflink page="alias-de-la-page" text="nom du lien" class="class-css"}
-    ou:
+    
+ou :  
+
     <a href="{cms_selflink href="alias-de-la-page"}>Nom du lien</a>
 
 **Ancres** :
@@ -131,7 +143,7 @@ On peut ensuite "appeler" les blocs dans la partie contenu du gabarit (<body></b
 _**show_all="1"** => montre les pages non actives dans le menu_  
 _**excludeprefixe="aliaspage"** => n'affiche pas les pages dont l'alias est précisé (ex: resultat du module de recherche)._ 
 
-**Activer le debug (variables dans une modale) :**
+**Activer le debug (afficher les variables des templates dans une modale) :**
 
     {debug}
 
@@ -139,7 +151,7 @@ _**excludeprefixe="aliaspage"** => n'affiche pas les pages dont l'alias est pré
 
     {global_content name='nom'}
     
-_Les BCG sont très utiles, notament pour fractionner des sites qui ont plusieurs gabarits, je les utilise souvent pour fractionner les header et footer, qui sont identiques peu importe le gabarit (la mise à jour est ainsi simplifiée, puisqu'elle ne se fait qu'une fois, à la manière d'un fichier en include en php...)_
+_Les BCG sont très utiles, notament pour fractionner des sites qui ont plusieurs gabarits, je les utilise notament pour isoler header et footer, qui sont identiques peu importe le gabarit (la mise à jour est ainsi simplifiée, puisqu'elle ne se fait qu'une fois, à la manière de ce que fait un include en php...)_
 
 
 **Formulaire de recherche :**
@@ -154,15 +166,14 @@ _Les BCG sont très utiles, notament pour fractionner des sites qui ont plusieur
 1. Editer config.php
 
     `$config['url_rewriting'] = 'mod_rewrite';`
-    
-    
-2. sur le ftp : doc/htaccess.txt => telecharger  
+     
+2. sur le ftp : télécharger doc/htaccess.txt
 Le placer à la racine du site et le renommer : .htaccess
 
 **Permettre l'envoi de mail :**
 
 Admin > Extensions > Cmsmailer
-Méthode d'envoi des mails : mail (= méthode mail de php).
+Méthode d'envoi des mails : mail (_= méthode mail de php_).
 
 **Afficher du Javascript dans un gabarit :**
 
@@ -174,9 +185,9 @@ Méthode d'envoi des mails : mail (= méthode mail de php).
 
 **Affichage conditionnel**
 
-Exemple indiquer dans le gabarit de n'afficher une info que si on est sur une page donnée :
+__Exemple :__ indiquer dans le gabarit de n'afficher une info que si on est sur une page donnée :
 
-Dans le champ "Balises Smarty spécifiques pour cette page :" on ajoute :
+Dans l'édition d'une page, aller au champ "Balises Smarty spécifiques pour cette page :" et ajouter :
 
     {assign var="contentpage" value="valeur"}
     
@@ -188,11 +199,11 @@ Puis dans le gabarit (ou dans la page), on met en place la condition :
 
 **Limiter le nombre de caractères à afficher (balise smarty)**
 
-Un exemple avec le module de news (code inséré dans une gabarit de sommaire d'article):
+Un exemple avec le module de news, on affiche que les 300 premiers caractères du sommaire (code inséré dans une gabarit de sommaire d'article):
 
     {eval var=$entry->summary|truncate:300:" (...)"}
     
-**Affichage aléatoire (randomize) (exemple : des photos)**
+**Affichage aléatoire (randomize) (exemple avec des photos)**
 
 1. Créer un dossier sur le ftp ex: uploads/random
 		

@@ -9,7 +9,7 @@ Gruntjs permet d'automatiser un certains nombres de tâches , telles que : conca
 
 __Prérequis :__ Pour utiliser Grunt il faut avoir installé Nodejs.
 
-Voici 22un rapide résumé des actions à réaliser pour optimiser les fichiers d'un projets web.
+Voici un rapide résumé des actions à réaliser pour optimiser les fichiers d'un projets web :
 
 On ouvre une nouvelle invit de commande NodeJs et on se rend dans le bon dossier :
 
@@ -49,7 +49,7 @@ On créer un nouveau fichier : _Gruntfile.js_
 
 ###Quelques fonctions utiles :
 
-On se rend sur le site de grunt, dans la section plugin et on cherche les plugins interessants. __remarque__ on préfèrera les plugins commencant par "contrib-", correspondants à des plugins mis en place par les développeurs de grunt:
+On se rend dans la [section plugin du site de grunt](http://gruntjs.com/plugins) pour trouver les fonctions qui nous intéressent. __Remarque :__ _on préfèrera les plugins commencant par "contrib-", correspondants à des plugins mis en place ou validés par les développeurs de grunt:_
 
 ###Task
 Ce module simplifie le processus d'installation des fonctions (dans le fichier Gruntfile.js) :
@@ -249,7 +249,7 @@ On peut aussi réutiliser cette config dans un autre projet, pour celà il suffi
     
     grunt
     
-###_Bonus (minus?)_ : Minifier des images avec imagemin
+###_Bonus_ : Minifier des images avec imagemin
 
 _Je n'en ai pas parlé plus tôt car je n'ai pas réussi à le faire fonctionner chez moi (win7 64bits), malgré de nombreuses tentatives (upgrade/downgrade des plugins, de npm, NodeJs, Git et Grunt)..._  
 Voici toutefois la marche à suivre : 

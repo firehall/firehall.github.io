@@ -13,9 +13,14 @@ ListIt2 (ou ListItExtended), s'installe comme tous les modules CMSMS, depuis l'i
 Uhe fois installé, pour l'utiliser il va falloir créer une (ou plusieurs) instance(s):  
 **Extensions > ListIt2 > Créer une instance**  
 
-L'instance est dès lors disponible sous la forme **ListIt2nomdumodule** dans : **Contenu > ListIt2nomdumodule**  
-Dans l'onglet "options" on peut renommer l'instance pour un nom plus compréhensible, définir le nombre d'éléments à afficher sur une seule page (dans l'admin), définir le préfix d'url ou encore les critères à faire apparaitre dans la liste (utile pour afficher et trier par catégorie).  
-_**Rque:** Pour voir le nouveau nom du module, il va falloir vider le cache de cmsms :  
+L'instance est dès lors disponible sous la forme **ListIt2nomdumodule** dans :  
+**Contenu > ListIt2nomdumodule**  
+
+Dans l'onglet "options" on peut :  
+- renommer l'instance pour un nom plus compréhensible,  
+- définir le nombre d'éléments à afficher sur une seule page (dans l'admin),  
+- définir le préfix d'url ou encore les critères à faire apparaitre dans la liste (utile pour afficher et trier par catégorie).  
+_**Remarque:** Pour voir le nouveau nom du module, il va falloir vider le cache de cmsms :  
 **Administration du site > Maintenance du système > cache et contenu > vider le cache**_
 
 ###Créer les champs de son module
@@ -37,7 +42,7 @@ On va dès lors pouvoir afficher une catégorie précise de son instance, direct
     {ListIt2monmodule category="alias-de-la-category"}
     
 Bizarrement, afficher le nom de la catégorie d'un item, dans un gabarit ListIt2 est relativement compliqué.
-En effet le code suivant ne va pas afficher le nom de la catégorie, mais plutôt son ID (un chiffre) :
+En effet le code suivant ne va pas afficher le nom de la catégorie, mais plutôt son ID :
     
     {$item->fielddefs.category.value}
     
@@ -55,7 +60,7 @@ Une solution existe, bien qu'un peu biaisée...
 02. Type de fichiers autorisés : **gif,jpeg,jpg,png**
 
 03. Répertoire : **repertoire1/{$item_id}/repertoire2**  
-_Cette technique permet de classer les images par item. Si on ne fait pas ca, on risque à terme d'écraser les fichiers._
+_Cette technique permet de classer les images par item, en créant un dossier par article. Si on ne fait pas ca, on risque à terme d'écraser les fichiers._
 
 Dans le gabarit de notre Instance ListIt2, on va pouvoir appeler notre image de cette manière :
 
@@ -119,9 +124,11 @@ Dans un second temps, nous allons intégrer le template de sommaire que nous ven
 		</nav>
         
 **Remarque :** Cette solution (trouvée sur le web, sur un article concernant le module CGBlog de l'excellent site [i-do-this.com](http://www.i-do-this.com/blog/Prev-Next-links-in-CGBlog/57 "Lien vers l'article"), a bien entendu ces limites.  
-Par exemple, elle ne prend pas en compte la catégorie courante. La navigation va se faire depuis l'ID d'un article. Admettons que les articles 1 et 3 sont taggé dans la catégorie "toto" et l'article 2 dans la catégorie "Lulu".  
+Par exemple, elle ne prend pas en compte la catégorie courante. La navigation va se faire depuis l'ID d'un article.  
+Admettons que les articles 1 et 3 sont taggé dans la catégorie "toto" et l'article 2 dans la catégorie "Lulu".  
 Si on se trouve sur la page de détail de l'article 1, le prochain article sera l'article 2, et non l'article 3 (ce qui aurait donc été plus pertinent puisqu'il partage la même catégorie que l'article en cours).  
-La solution à ce problème est, en ce qui me concerne, de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant... Mais ca fonctionne (d'autant que logiquement les gabarits partageront le même code, il s'agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l'interface d'administration de CMSMS).
+La solution à ce problème peut être de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant...  
+Mais ca fonctionne (d'autant que logiquement les gabarits partageront le même code, il s'agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l'interface d'administration de CMSMS).
 
 ###Exemple de gabarit ListIt2
 
@@ -134,6 +141,7 @@ _Cet exemple fonctionne aussi bien pour un gabarit de sommaire, que de détail_
 	   {/foreach}
     {/if}
     
-
+Pour finir, il serait malhonnête de ne pas préciser que le module n'est plus mis à jour, les développeurs ayant décidés de quitter l'équipe de développement de CMSMS.  
+Ceci étant dit, la version actuelle est parfaitement stable et d'autres personnes sont en train de travailler à un succésseur de ListIt pour la v2 de CMSMS qui ne devrait plus trop tarder à arriver.
     
 

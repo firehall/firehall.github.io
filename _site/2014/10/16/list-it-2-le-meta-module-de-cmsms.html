@@ -60,9 +60,14 @@
 <p>Uhe fois installé, pour l’utiliser il va falloir créer une (ou plusieurs) instance(s):<br />
 <strong>Extensions &gt; ListIt2 &gt; Créer une instance</strong>  </p>
 
-<p>L’instance est dès lors disponible sous la forme <strong>ListIt2nomdumodule</strong> dans : <strong>Contenu &gt; ListIt2nomdumodule</strong><br />
-Dans l’onglet “options” on peut renommer l’instance pour un nom plus compréhensible, définir le nombre d’éléments à afficher sur une seule page (dans l’admin), définir le préfix d’url ou encore les critères à faire apparaitre dans la liste (utile pour afficher et trier par catégorie).<br />
-<em><strong>Rque:</strong> Pour voir le nouveau nom du module, il va falloir vider le cache de cmsms :<br />
+<p>L’instance est dès lors disponible sous la forme <strong>ListIt2nomdumodule</strong> dans :<br />
+<strong>Contenu &gt; ListIt2nomdumodule</strong>  </p>
+
+<p>Dans l’onglet “options” on peut :<br />
+- renommer l’instance pour un nom plus compréhensible,<br />
+- définir le nombre d’éléments à afficher sur une seule page (dans l’admin),<br />
+- définir le préfix d’url ou encore les critères à faire apparaitre dans la liste (utile pour afficher et trier par catégorie).<br />
+<em><strong>Remarque:</strong> Pour voir le nouveau nom du module, il va falloir vider le cache de cmsms :<br />
 <strong>Administration du site &gt; Maintenance du système &gt; cache et contenu &gt; vider le cache</strong></em></p>
 
 <h3 id="crer-les-champs-de-son-module">Créer les champs de son module</h3>
@@ -92,7 +97,7 @@ Dans l’onglet “options” on peut renommer l’instance pour un nom plus com
 </code></pre>
 
 <p>Bizarrement, afficher le nom de la catégorie d’un item, dans un gabarit ListIt2 est relativement compliqué.
-En effet le code suivant ne va pas afficher le nom de la catégorie, mais plutôt son ID (un chiffre) :</p>
+En effet le code suivant ne va pas afficher le nom de la catégorie, mais plutôt son ID :</p>
 
 <pre><code>{$item-&gt;fielddefs.category.value}
 </code></pre>
@@ -116,7 +121,7 @@ En effet le code suivant ne va pas afficher le nom de la catégorie, mais plutô
   </li>
   <li>
     <p>Répertoire : <strong>repertoire1/{$item_id}/repertoire2</strong><br />
-<em>Cette technique permet de classer les images par item. Si on ne fait pas ca, on risque à terme d’écraser les fichiers.</em></p>
+<em>Cette technique permet de classer les images par item, en créant un dossier par article. Si on ne fait pas ca, on risque à terme d’écraser les fichiers.</em></p>
   </li>
 </ol>
 
@@ -187,9 +192,11 @@ Pour appeler un champ spécifique : </p>
 </code></pre>
 
 <p><strong>Remarque :</strong> Cette solution (trouvée sur le web, sur un article concernant le module CGBlog de l’excellent site <a href="http://www.i-do-this.com/blog/Prev-Next-links-in-CGBlog/57" title="Lien vers l'article">i-do-this.com</a>, a bien entendu ces limites.<br />
-Par exemple, elle ne prend pas en compte la catégorie courante. La navigation va se faire depuis l’ID d’un article. Admettons que les articles 1 et 3 sont taggé dans la catégorie “toto” et l’article 2 dans la catégorie “Lulu”.<br />
+Par exemple, elle ne prend pas en compte la catégorie courante. La navigation va se faire depuis l’ID d’un article.<br />
+Admettons que les articles 1 et 3 sont taggé dans la catégorie “toto” et l’article 2 dans la catégorie “Lulu”.<br />
 Si on se trouve sur la page de détail de l’article 1, le prochain article sera l’article 2, et non l’article 3 (ce qui aurait donc été plus pertinent puisqu’il partage la même catégorie que l’article en cours).<br />
-La solution à ce problème est, en ce qui me concerne, de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant… Mais ca fonctionne (d’autant que logiquement les gabarits partageront le même code, il s’agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l’interface d’administration de CMSMS).</p>
+La solution à ce problème peut être de créer des instances de ListIt par catégorie, ce qui peut se révéler chronophage et extrêmement redondant…<br />
+Mais ca fonctionne (d’autant que logiquement les gabarits partageront le même code, il s’agira donc de copier/coller les gabarits. Le travail le plus fastidieux restant la recréation manuelle des champs depuis l’interface d’administration de CMSMS).</p>
 
 <h3 id="exemple-de-gabarit-listit2">Exemple de gabarit ListIt2</h3>
 
@@ -203,6 +210,9 @@ La solution à ce problème est, en ce qui me concerne, de créer des instances 
 {/if}
 </code></pre>
 
+<p>Pour finir, il serait malhonnête de ne pas préciser que le module n’est plus mis à jour, les développeurs ayant décidés de quitter l’équipe de développement de CMSMS.<br />
+Ceci étant dit, la version actuelle est parfaitement stable et d’autres personnes sont en train de travailler à un succésseur de ListIt pour la v2 de CMSMS qui ne devrait plus trop tarder à arriver.</p>
+
 
 					<hr>
 				</section>
@@ -210,7 +220,9 @@ La solution à ce problème est, en ce qui me concerne, de créer des instances 
 					 
 							<a rel="prev" class="a-hover"href="/2014/09/09/mes-habitudes-de-dev-avec-cmsms.html"><i class="icon-double-angle-left"></i> Base de travail pour développer un site avec CmsMadeSimple</a>
 						
-						
+						 
+							<a rel="next" style="float:right" class="a-hover"href="/2014/11/03/override-mise-en-cache-de-fichiers.html">Problèmes liés à la mise en cache de fichiers sur un serveur Web <i class=" icon-double-angle-right"></i></a>
+					
 				</section>
 				    <div id="disqus_thread"></div>
     <script type="text/javascript">

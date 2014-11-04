@@ -52,7 +52,8 @@
                 </h5>
 				<h2 class="content">Base de travail pour développer un site avec CmsMadeSimple</h2>
 				<section>
-					<p>Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintenant et je dois avouer que c’est un CMS que j’apprécie particulièrement que ce soit pour sa très grande souplesse, sa prise en main intuitive et son respect des standards (web et accessibilité). A la manière d’un cuisinier, je présente ici ma <strong>“base de travail”</strong> et le process que j’emploie. Nul doute qu’avec mes habitudes, le cms n’est sans doute pas optimisé au maximum, mais il s’accorde parfaitement à ma façon d’aborder un projet web et ca me convient! ;)</p>
+					<p>Je développe des sites avec CmsMadeSimple (CMSMS) depuis plus de 5 ans maintenant et j’avoue que c’est un CMS que j’apprécie particulièrement, que ce soit pour sa très grande souplesse, sa prise en main intuitive et son respect des standards (web et accessibilité).<br />
+Dans cet article, je présente sans prétention la manière dont j’installe et utilise ce CMS.</p>
 
 <h3 id="installation">Installation</h3>
 
@@ -64,7 +65,7 @@
     <p>Je dézippe les archives et les fusionne pour obtenir une version complète du cms (EN + FR).</p>
   </li>
   <li>
-    <p>Je transfert l’ensemble des fichiers sur le ftp et modifie les droits sur les dossiers suivants (777 - 755 pour OVH) : </p>
+    <p>Je transfert l’ensemble des fichiers sur le ftp et modifie les droits sur les dossiers suivants (777 <em>ou 755 pour OVH</em>) : </p>
   </li>
 </ol>
 
@@ -101,7 +102,7 @@
   <li>js</li>
 </ul>
 
-<p><em>Le CMS possède bien entendu sa propre gestion des CSS (performante!), mais j’avoue que j’aime bien utiliser ma feuille de style externe, issue d’une première intégration (html-css-js) d’après les maquettes du projet… C’est inhérent à mon process…</em></p>
+<p><em>Le CMS possède bien entendu sa propre gestion des CSS (performante!), mais j’ai tendance à plutôt utiliser une feuille de style externe, issue d’une première intégration (html-css-js) d’après les maquettes du projet…</em></p>
 
 <h3 id="gabarits">Gabarits</h3>
 
@@ -109,69 +110,72 @@
 
 <h4 id="balises-de-mtadonnes-entre-head-et-head">Balises de métadonnées (entre &lt;head&gt; et &lt;/head&gt;):</h4>
 
+<p>On place cette balise en tout début de fichier, on évite tout espace ou saut de ligne avant celle-ci) : </p>
+
 <pre><code>{process_pagedata}
-</code></pre>
-
-<p><em>On place cette balise en tout début de fichier, on évite tout espace ou saut de ligne avant celle-ci)</em></p>
-
-<pre><code>&lt;title&gt;{title} | {sitename}&lt;/title&gt;
 </code></pre>
 
 <table>
   <tbody>
     <tr>
-      <td>_Titre de la page</td>
-      <td>nom du site (défini durant l’install et modifiable via l’admin)_</td>
+      <td>Titre de la page</td>
+      <td>nom du site (défini durant l’install et modifiable via l’admin) :</td>
     </tr>
   </tbody>
 </table>
 
+<pre><code>&lt;title&gt;{title} | {sitename}&lt;/title&gt;
+</code></pre>
+
+<p>Métadonnées :  </p>
+
 <pre><code>{metadata}
 </code></pre>
 
-<p><em>métadonnées…</em></p>
+<p>Les feuilles de styles (css) :  </p>
 
 <pre><code>{cms_stylesheet}
 </code></pre>
 
-<p><em>Quand je laisse le CMS gérer les CSS</em></p>
-
 <h4 id="balises-de-mtadonnes-entre-body-et-body">Balises de métadonnées (entre &lt;body&gt; et &lt;/body&gt;):</h4>
+
+<p>La balise qui affiche le menu (on peut choisir le template, les modifier ou en ajouter directement via ftp : “modules/MenuManager/templates/nom_template.tpl” :  </p>
+
 <pre><code>{menu template='cssmenu.tpl'}
 </code></pre>
 
-<p><em>La balise qui affiche le menu (on peut choisir le template, les modifier ou en ajouter directement via ftp : “modules/MenuManager/templates/nom_template.tpl”</em></p>
+<p>N’afficher que le premier niveau du menu (parents) :</p>
 
 <pre><code>{menu template='cssmenu.tpl' collapse="1"}
 </code></pre>
 
-<p><em>N’afficher que le premier niveau</em></p>
+<p>N’afficher que le niveau 2 :  </p>
 
 <pre><code>{menu template='cssmenu.tpl' childrenof="alias-de-la-page"}
 </code></pre>
 
-<p><em>N’afficher que le niveau 2</em></p>
+<p>Le titre de la page en cours :</p>
 
 <pre><code>{title}
 </code></pre>
 
-<p><em>Le titre de la page en cours</em></p>
+<p>Le fil d’arianne (breadcrumbs) :  </p>
 
 <pre><code>{breadcrumbs delimiter="&gt;"}
 </code></pre>
 
-<p><em>Le fil d’arianne</em></p>
+<p>Le contenu principal de la page :  </p>
 
 <pre><code>{content}
 </code></pre>
 
-<p><em>Le contenu de la page</em></p>
-
 <h4 id="gabarits-plus-complexes-plusieurs-zones-de-saisie">Gabarits plus complexes (plusieurs zones de saisie):</h4>
 
-<p>De base, dans l’édition d’une page on peut saisir le titre de la page, le nom qui sera utilisé pour le menu, et le contenu. Mais on peut aller (beaucoup) plus loin et faciliter la saisie de l’utilisateur final sans qu’il risque (ou presque) de ruiner la mise en page de son site. Pour ce faire, on peut définir plusieurs zones de saisies, celà se fait en deux temps : on initilalise les zones de contenues puis on les appelle dans le gabarit.</p>
+<p>De base, dans l’édition d’une page on peut saisir le titre de la page, le nom qui sera utilisé pour le menu, et le contenu.<br />
+Mais on peut aller plus loin et faciliter la saisie de l’utilisateur final sans qu’il risque (ou presque) de ruiner la mise en page de son site.<br />
+Pour ce faire, on peut définir plusieurs zones de saisies. Celà se fait en deux temps : on initilalise les zones de contenues puis on les appelle dans le gabarit.</p>
 
-<p><strong>L’initialisation se fait en tout début de document, tout de suite après <code>{process_pagedata}</code></strong></p>
+<p><strong>L’initialisation se fait en tout début de document, tout de suite après <code>{process_pagedata}</code></strong> :  </p>
 
 <pre><code>{content assign='monbloc' label="Mon bloc" tab="nom de l'onglet" wysiwyg=true oneline=true}
 </code></pre>
@@ -179,17 +183,19 @@
 <p><em><strong>assign</strong> : Le nom du bloc, tel qu’on va l’appeler plus loin dans le gabarit.</em><br />
 <em><strong>label</strong> : Le nom du bloc dans la page d’admin</em><br />
 <em><strong>tab</strong> : l’onglet dans lequel apparaitra le bloc dans l’admin</em><br />
-<em><strong>wysiwyg</strong> : activer le wysiwyg ou non</em><br />
-_<strong>oneline</strong> : champ input, ou zone de texte (textarea - par défaut) dans l’admin.</p>
+<em><strong>wysiwyg</strong> : activer le wysiwyg ou non (valeurs: true ou false)</em><br />
+_<strong>oneline</strong> : champ input, ou zone de texte (textarea - par défaut) dans l’admin (valeurs: true ou false).</p>
 
 <p>Comme évoqué, on peut ajouter autant de zones de textes que l’on veut, mais il en faut au moins une (qui prendra la forme que nous venons de voir, et qui sera obligatoire (sans quoi on ne pourra pas valider la page).</p>
+
+<p>Ajouter une seconde zone de saisie :  </p>
 
 <pre><code>{content block=nom du bloc assign='monbloc' label="Mon bloc" tab="nom de l'onglet" wysiwyg=true oneline=true}
 </code></pre>
 
-<p><em><strong>block</strong> : Définit qu’il s’agit d’un second bloc de contenu (secondaire)</em></p>
+<p><em><strong>block</strong> : Définit qu’il s’agit d’un bloc de contenu secondaire</em></p>
 
-<p>On peut ensuite “appeler” les blocs dans la partie contenu du gabarit (&lt;body&gt;&lt;/body&gt;):</p>
+<p>On peut ensuite “appeler” les blocs dans la partie contenu du gabarit (&lt;body&gt;&lt;/body&gt;) :</p>
 
 <pre><code>{$nom_du_block1}
 (...)
@@ -199,11 +205,14 @@ _<strong>oneline</strong> : champ input, ou zone de texte (textarea - par défau
 
 <h4 id="autres-balises-utiles">Autres balises utiles:</h4>
 
-<p><strong>Liens pages internes</strong> :</p>
+<p><strong>Liens pages internes</strong> :  </p>
 
 <pre><code>{cms_selflink page="alias-de-la-page" text="nom du lien" class="class-css"}
-ou:
-&lt;a href="{cms_selflink href="alias-de-la-page"}&gt;Nom du lien&lt;/a&gt;
+</code></pre>
+
+<p>ou :  </p>
+
+<pre><code>&lt;a href="{cms_selflink href="alias-de-la-page"}&gt;Nom du lien&lt;/a&gt;
 </code></pre>
 
 <p><strong>Ancres</strong> :</p>
@@ -219,7 +228,7 @@ ou:
 <p><em><strong>show_all=”1”</strong> =&gt; montre les pages non actives dans le menu</em><br />
 <em><strong>excludeprefixe=”aliaspage”</strong> =&gt; n’affiche pas les pages dont l’alias est précisé (ex: resultat du module de recherche).</em> </p>
 
-<p><strong>Activer le debug (variables dans une modale) :</strong></p>
+<p><strong>Activer le debug (afficher les variables des templates dans une modale) :</strong></p>
 
 <pre><code>{debug}
 </code></pre>
@@ -229,7 +238,7 @@ ou:
 <pre><code>{global_content name='nom'}
 </code></pre>
 
-<p><em>Les BCG sont très utiles, notament pour fractionner des sites qui ont plusieurs gabarits, je les utilise souvent pour fractionner les header et footer, qui sont identiques peu importe le gabarit (la mise à jour est ainsi simplifiée, puisqu’elle ne se fait qu’une fois, à la manière d’un fichier en include en php…)</em></p>
+<p><em>Les BCG sont très utiles, notament pour fractionner des sites qui ont plusieurs gabarits, je les utilise notament pour isoler header et footer, qui sont identiques peu importe le gabarit (la mise à jour est ainsi simplifiée, puisqu’elle ne se fait qu’une fois, à la manière de ce que fait un include en php…)</em></p>
 
 <p><strong>Formulaire de recherche :</strong></p>
 
@@ -247,7 +256,7 @@ ou:
     <p><code>$config['url_rewriting'] = 'mod_rewrite';</code></p>
   </li>
   <li>
-    <p>sur le ftp : doc/htaccess.txt =&gt; telecharger<br />
+    <p>sur le ftp : télécharger doc/htaccess.txt
 Le placer à la racine du site et le renommer : .htaccess</p>
   </li>
 </ol>
@@ -255,7 +264,7 @@ Le placer à la racine du site et le renommer : .htaccess</p>
 <p><strong>Permettre l’envoi de mail :</strong></p>
 
 <p>Admin &gt; Extensions &gt; Cmsmailer
-Méthode d’envoi des mails : mail (= méthode mail de php).</p>
+Méthode d’envoi des mails : mail (<em>= méthode mail de php</em>).</p>
 
 <p><strong>Afficher du Javascript dans un gabarit :</strong></p>
 
@@ -268,9 +277,9 @@ Méthode d’envoi des mails : mail (= méthode mail de php).</p>
 
 <p><strong>Affichage conditionnel</strong></p>
 
-<p>Exemple indiquer dans le gabarit de n’afficher une info que si on est sur une page donnée :</p>
+<p><strong>Exemple :</strong> indiquer dans le gabarit de n’afficher une info que si on est sur une page donnée :</p>
 
-<p>Dans le champ “Balises Smarty spécifiques pour cette page :” on ajoute :</p>
+<p>Dans l’édition d’une page, aller au champ “Balises Smarty spécifiques pour cette page :” et ajouter :</p>
 
 <pre><code>{assign var="contentpage" value="valeur"}
 </code></pre>
@@ -284,12 +293,12 @@ Méthode d’envoi des mails : mail (= méthode mail de php).</p>
 
 <p><strong>Limiter le nombre de caractères à afficher (balise smarty)</strong></p>
 
-<p>Un exemple avec le module de news (code inséré dans une gabarit de sommaire d’article):</p>
+<p>Un exemple avec le module de news, on affiche que les 300 premiers caractères du sommaire (code inséré dans une gabarit de sommaire d’article):</p>
 
 <pre><code>{eval var=$entry-&gt;summary|truncate:300:" (...)"}
 </code></pre>
 
-<p><strong>Affichage aléatoire (randomize) (exemple : des photos)</strong></p>
+<p><strong>Affichage aléatoire (randomize) (exemple avec des photos)</strong></p>
 
 <ol>
   <li>

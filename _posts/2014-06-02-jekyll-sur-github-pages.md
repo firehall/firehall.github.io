@@ -36,7 +36,7 @@ Pour ce faire, on ouvre la console (de préférence celle de GIT ou de Node) :
     clone http
     
 Voilà notre repository est clonée en local.  
-Libre à nous maintenant de placer les fichiers de Jekyll dans le dossier "firehall.github.io" (modifiez firehall, par votre compte bien sur...).
+Libre à nous maintenant de placer les fichiers de Jekyll dans le dossier "firehall.github.io" (modifiez firehall, par votre compte bien sûr...).
 
 Pour envoyer les modifications en ligne, il ne reste plus qu'à taper les commandes comme suit :
 
@@ -44,11 +44,11 @@ Pour envoyer les modifications en ligne, il ne reste plus qu'à taper les comman
     git commit -m "Mon premier commit"
     git push
     
-Dans la première ligne on indique qu'on prend en compte l'ensemble des modifs éffectuées. Ensuite on donne un nom à notre commit (on est sur github...) et enfin on "push", c'est-à-dire qu'on transfère les fichiers sur les serveurs distants.
+Dans la première ligne on indique qu'on prend en compte l'ensemble des modifs éffectuées. Ensuite on donne un nom à notre commit et enfin on "push", c'est-à-dire qu'on transfère les fichiers sur les serveurs distants.
 
 ### Ca ne marche pas (parce-que je suis sur windows?)
 
-Personnellement j'ai eu quelques difficultés à faire ces manips (suivant le pc, à chaque fois sur un environnement Windows (7 pro)), voici quelques petits conseils :  
+Personnellement j'ai eu quelques difficultés à faire ces manips (suivant le pc, à chaque fois sur un environnement Windows (7 pro, 64bits)), voici quelques petits conseils :  
 Si le push ne fonctionne pas, on peut tenter de le forcer :
 
     git push -f
@@ -61,17 +61,17 @@ Il faudra ensuite redéfinir les accès :
     git remote set-url origin git@github.com:firehall/firehall.github.io
     git push
     
-On vous demandera ensuite d'entrer la phrase associée à la clé SSH (et votre login/mdp github bien sur).
+On vous demandera ensuite d'entrer la phrase associée à la clé SSH (et votre login/mdp github).
 
 Si rien de tout ca ne marche (ca m'est arrivé ;)), il reste la solution "pour les faibles" ;) : __utiliser l'application github pour windows__.  
-Alors ok, ce n'est pas très gratifiant (pas de push en lignes de commandes), mais ca marche parfaitement bien et au final c'est tout ce qui compte!  
+Alors ok, ce n'est pas très gratifiant (pas de push en lignes de commandes ;)), mais ca marche parfaitement bien et au final c'est tout ce qui compte, non?  
 [Github pour windows](https://windows.github.com/)
 
 ### Utiliser son nom de domaine
 
 A ce stade votre Jekyll est en ligne sur github avec une adresse de type : __"firehall.github.io"__
 Si vous avez votre propre nom de domaine, vous pouvez tout à fait l'utiliser avec vos pages Github :  
-Créez un fichier CNAME à la racine du projet (firehall.github.io) avec votre nom de domaine (ou sous-domaine dans mon cas) : 
+Il suffit de créer un fichier CNAME à la racine du projet (firehall.github.io) avec votre nom de domaine (ou sous-domaine dans mon cas) : 
 
     blog.firehall.fr
     

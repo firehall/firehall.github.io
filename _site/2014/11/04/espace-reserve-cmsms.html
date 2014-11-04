@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title> Un espace réservé sur CmsMadeSimple  - Blog Firehall</title>
+		<!-- For responsive site
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="author" href="/humans.txt">
+		<meta name="description" content="Description Goes Here">
+		<link rel="stylesheet" href="/css/style.css">
+		<!--[if IE 7]>
+			<html class="ie7"> 
+			<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<!--[if IE 8]><html class="ie8"> <![endif]-->		
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">	    
+	</head>
+	<body>
+	<!-- Header
+	    ================================================== -->
+	<header>
+
+	</header>
+
+	<div class="top-strip"></div>
+<main class="content">
+    <section class="container">
+    	<div class="row-fluid">
+    		<article class="home-icon">
+				<a href="/">
+					<img src="/img/fh-icon.png" alt="blog firehall" width="60"/>
+					<!--<i class="icon-home"></i> -->
+				</a>
+			</article>
+			<article class="post">
+				<h5>
+                    
+                    4
+                    Novembre
+                      
+                    2014
+                </h5>
+				<h2 class="content">Un espace réservé sur CmsMadeSimple</h2>
+				<section>
+					<p>CmsMadeSimple ne propose par défaut un système d’espace réservé, il est revanche assez aisé d’en mettre un en place, et qui plus est (comme d’habitude avec ce CMS) le faire coller parfaitement avec les besoins d’un projet.</p>
+
+<h3 id="les-modules--installer">1. Les modules à installer</h3>
+
+<h4 id="frontendusers--feu">FrontEndUsers  (FEU)</h4>
+<p>Le module qui va permettre de créer du contenu réservé. Il va permettre également la création d’utilisateurs, de groupes et les gabarits de connexion / déconnexion.<br />
+<em>Dépendance :  CGExtensions</em></p>
+
+<h4 id="customcontent">CustomContent</h4>
+<p>Permet d’attribuer différents types de contenus en fonction du public (dans une page: possibilité de sélectionner l’option “contenu réservé”).
+<em>Dépendance : FrontEndUsers</em></p>
+
+<h4 id="selfregistration">SelfRegistration</h4>
+<p>Permet aux utilisateurs de se créer un compte (ou en faire la demande).<br />
+<em>Dépendance : CGExtension et FrontEndUsers</em></p>
+
+<h3 id="configurer-le-module-feu">2. Configurer le module FEU</h3>
+
+<p><strong>Utilisateurs/Groupes &gt; Gestion des utilisateurs du site</strong></p>
+
+<p><strong>Onglet: Propriétés de l’utilisateur</strong><br />
+“Ajouter une propriété.”<br />
+Il va falloir créer au minimum deux champs : <strong>e-mail (type : email)</strong>, qui va servir d’identifiant à l’utilisateur final et son champ mot de passe (type: texte - Stocker ces données de manière cryptée dans la base de données: OUI).  </p>
+
+<p><strong>Onglet: Groupes</strong><br />
+“Ajouter un groupe.”<br />
+On donne un nom au groupe et en second temps on définit parmis les champs créés précédement, s’ils sont obligatoires, optionnels, cachés etc…</p>
+
+<p><strong>Onglet: Utilisateurs</strong><br />
+On va pouvoir gérer ici les utilsateurs (appartenance aux groupes, modifications d’infos, suppression et bien sur création).<br />
+“Ajouter un utilisateur”
+On va nous demander de remplir les champs créés précédement et l’appartenance à au moins un groupe.<br />
+En cliquant sur suivant, on va nour redemander l’adresse e-mail, puis on revalide.</p>
+
+<p><strong>Gabarits</strong><br />
+On peut modifier différents gabarits : <strong>connexion, déconnexion, changement de paramètres, oubli de mot de passe, récupération de l’id etc..</strong>  </p>
+
+<h3 id="adapter-les-gabarits">3. Adapter les gabarits</h3>
+
+<p>Rque: On peut modifier les gabarits pour inclure les conditions (utile si par exemple on veut qu’un seul gabarit soit utilisé pour les gens connectés ou non, avec du contenu spécifique uniquement accessibles aux personnes authentifiées), ou on peut définir qu’un contenu, une page pour être précis, ne soit accessible qu’aux personnes connectées (on édite une page, type de contenu : “Contenu protégé”). A noter que cette dernière action ne permet pas d’affiner la restriction à un groupe en particulier. Pour celà il va faloir mettre des conditions dans les gabarits :</p>
+
+<p><strong>Contenu visible par un utilisateur connecté :</strong>  </p>
+
+<pre><code>{if $ccuser-&gt;loggedin()}
+**Contenu protégé**
+{/if}
+</code></pre>
+
+<p><strong>Contenu visible par un utilisateur connecté ET membre du groupe ‘user’:</strong>  </p>
+
+<pre><code>{if $ccuser-&gt;loggedin() &amp;&amp; $ccuser-&gt;memberof('user')}
+**Contenu protégé**
+{/if}
+</code></pre>
+
+<p><strong>Formulaires de connexion :</strong><br />
+Notre site dispose désormais de contenus accessibles uniquement aux utilisateurs enregistrés. Encore faut-il que ces personnes puissent se connecter!</p>
+
+<p>Dans une <strong>page</strong>, un <strong>gabarit de page</strong> ou un <strong>“bloc de contenu globaux” (BCG)</strong> :  </p>
+
+<pre><code>{FrontEndUsers}
+</code></pre>
+
+<p><strong>Formulaire de déconnexion :</strong>  </p>
+
+<pre><code>{FrontEndUsers form="logout"}
+</code></pre>
+
+<h4 id="autres-rglages">Autres réglages</h4>
+
+<p><strong>onglet OPTIONS:</strong><br />
+- afficher dans le menu<br />
+- actif<br />
+- pas cachable<br />
+- pas de recherche dans la page<br />
+- alias: private_nom-de-alias  </p>
+
+<p><em>le préfixe “private</em>” va permettre d’exclure les pages dans un éventuel menu ou plan du site : (excludeprefix=”private”)_  </p>
+
+<p><strong>Ne pas afficher la page de connexion quand loggé :</strong><br />
+a. Créer une page avec le formulaire de connexion :<br />
+    {FrontEndUsers}</p>
+
+<p>b. Dans les paramétrages de FEU =&gt; quand user connecté rediriger vers une sous-page de la page de connexion.  </p>
+
+<p>c. Dans les balises smarty spécifiques à la page de connexion :<br />
+    {if $ccuser-&gt;loggedin()}
+        {redirect_page page=’ma-sous-page’}
+    {/if}</p>
+
+<h3 id="demande-de-cration-de-compte-avec-validation-manuelle">4. Demande de création de compte avec validation manuelle</h3>
+
+<p>Il peut arriver qu’on veuille laisser la possibilité à l’internaute de faire une demande de création de compte qui sera ensuite validée (ou non) par l’administrateur du site.</p>
+
+<p>Ceci est parfaitement possible, il va simplement falloir un peu jongler avec le module FEU :</p>
+
+<h4 id="cration-de-deux-groupes">Création de deux groupes</h4>
+<p>Nous allons créer deux groupes :<br />
+- <strong>user</strong> qui contiendra les utilisateurs validés.<br />
+- <strong>temp</strong> qui contiendra les utilisateurs en attente de validation.  </p>
+
+<p>Par défaut, toutes les demandes d’inscriptions se soldent par une adhésion au groupe “temp” :<br />
+Utilisateurs/Groupes &gt; Gestion des utilisateurs du site &gt; Réglages (en haut à droite)<br />
+<strong>Onglet “authentification intégrée” : Groupe par défaut pour les nouveaux utilisateurs : temp</strong><br />
+<strong>Onglet “Préférences” : Notifications par email : Lorsqu’un nouvel utilisateur est créé (et juste en-dessous on oublie pas d’entrer l’adresse e-mail qui doit recevoir la notification</strong><br />
+Groupes autorisés : on met en surbrillance uniquement le groupe user (ainsi les membres du groupe temp n’auront dans les faits accès à rien).</p>
+
+<p>A ce stade, à chaque fois que quelqu’un va s’inscrire : il sera automatiquement inscrit dans le groupe temp et l’administrateur recevra un mail indiquant cette création.<br />
+Une fois les infos du compte validée, il n’y a plus qu’à basculer l’utilisateur dans le groupe définitif : “user” et lui envoyer un email lui confirmant son inscription.</p>
+
+<h3 id="sources-">Sources :</h3>
+<p><a href="http://jc.etiemble.free.fr/abc/index.php?page=private2n">http://jc.etiemble.free.fr/abc/index.php?page=private2n</a><br />
+<a href="http://jc.etiemble.free.fr/abc/index.php/realisations/trucs-astuces/private2n">http://jc.etiemble.free.fr/abc/index.php/realisations/trucs-astuces/private2n</a><br />
+<a href="http://www.cmsmadesimple.fr/forum/viewtopic.php?id=4092">http://www.cmsmadesimple.fr/forum/viewtopic.php?id=4092</a></p>
+
+					<hr>
+				</section>
+				<section style="font-weight:bold; margin-bottom: 2em;">
+					 
+							<a rel="prev" class="a-hover"href="/2014/11/03/override-mise-en-cache-de-fichiers.html"><i class="icon-double-angle-left"></i> Problèmes liés à la mise en cache de fichiers sur un serveur Web</a>
+						
+						
+				</section>
+				    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'firehall'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+			</article>
+		</div>
+	</section>
+</main>
+
+
+	<footer>
+		<div class="container">
+			<a href="http://richbray.me/frap/">Frappuccino</a> | <a href="/">blog.firehall.fr</a>
+		</div>
+	</footer>
+
+	<!-- Footer
+	    ================================================== -->
+
+	<!-- Javascripts 
+	    ================================================= -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/custom.js"></script>
+	    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'firehall'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+    <!-- Analytics
+    ================================================== -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52786142-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    	
+	</body>
+</html>
