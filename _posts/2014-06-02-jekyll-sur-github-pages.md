@@ -71,12 +71,24 @@ Alors ok, ce n'est pas très gratifiant (pas de push en lignes de commandes ;)),
 
 A ce stade votre Jekyll est en ligne sur github avec une adresse de type : __"firehall.github.io"__
 Si vous avez votre propre nom de domaine, vous pouvez tout à fait l'utiliser avec vos pages Github :  
-Il suffit de créer un fichier CNAME à la racine du projet (firehall.github.io) avec votre nom de domaine (ou sous-domaine dans mon cas) : 
+Il suffit de créer un fichier CNAME à la racine du projet (firehall.github.io) avec votre nom de domaine : 
 
-    blog.firehall.fr
+    www.firehall.fr
     
 Connectez-vous à l'administration de votre hébergeur pour y renseigner un champ A qui fera pointer votre domaine sur l'IP de github : __204.232.175.78__.  
 Il ne reste plus qu'à attendre la propagation des DNS et le tour est joué!
+
+__Edit 07/11/2014__
+
+### Configurer un sous-domaine
+
+Pour configurer un sous-domaine, on créer un fichier CNAME à la racine du projet, avec pour valeur le sous-domaine, dans mon cas :
+
+    blog.firehall.fr
+    
+On se connecte ensuite à l'administration de l'hébergeur du domaine pour y créer un champ CNAME, qui pointera vers le sous-domaine page-utilisateur, dans mon cas :
+
+    blog 0 IN CNAME firehall.github.io.
 
     
 ### D'autres sources et ressources utiles sur le sujet:
